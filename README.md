@@ -1,61 +1,83 @@
-# Student Performance Analysis 🚀
+# Student Performance Analysis
 
-**Short description:**
-A concise exploratory data analysis (EDA) of student performance across subjects (math, science, english, overall). The analysis cleans the data, creates useful features, and produces visualizations and summary insights in `code/Student_analysis.ipynb`.
+Short summary  
+Exploratory Data Analysis (EDA) of student performance (math, science, english, overall). The notebook cleans the data, creates intervention flags, and produces plots and summary insights.
 
----
+Project structure
+- code/Student_analysis.ipynb — main notebook (EDA, feature engineering, plots)
+- Student_Performance.csv — raw dataset
+- Student_Performance_Cleaned.csv — cleaned dataset (output)
+- LICENSE
 
-## Project structure 📁
-- `code/Student_analysis.ipynb` — main notebook with EDA, feature engineering, and visualizations
-- `Student_Performance.csv` — raw dataset
-- `Student_Performance_Cleaned.csv` — cleaned dataset written by the notebook
-- `LICENSE` — project license
+Quick start (Windows)
+1. python -m venv .venv
+2. .venv\Scripts\activate
+3. pip install -r requirements.txt  # or: pip install pandas numpy matplotlib seaborn scipy jupyter
+4. jupyter notebook code/Student_analysis.ipynb
 
----
+What I did
+- Data cleaning: dropped duplicates, removed a mislabeled study method row ("not es").
+- Feature engineering:
+  - `Final_Decision`: Pass/Fail from `final_grade` (a–d → Pass, e–f → Fail).
+  - `Excluded`: attendance < 75% flag.
+  - `Catch-up_Sessions`: `final_grade == 'e'` OR `overall_score <= 60` flag.
+  - Converted categorical columns to `category` dtype.
+- Visualizations: pie charts, bar charts, boxplots, histograms, and correlation heatmaps.
+- Saved cleaned dataset to `Student_Performance_Cleaned.csv`.
 
-## Quick start 🔧
-1. Create and activate a Python environment (Windows):
-   ```bash
-   python -m venv .venv
-   .venv\Scripts\activate
-   pip install pandas numpy matplotlib seaborn scipy jupyter
-   ```
-2. Open and run the notebook:
-   ```bash
-   jupyter notebook code/Student_analysis.ipynb
-   ```
-3. The notebook saves a cleaned CSV to `Student_Performance_Cleaned.csv`.
+Key findings
+- No large gender gap in overall scores (medians and IQRs similar).
+- Score distribution is unimodal with a small lower tail — a subset may need support.
+- Strong positive correlation across subjects (math, science, english).
+- Study hours correlate positively with overall score.
+- Extra activities and study-method counts show no obvious negative effect; further testing needed.
 
----
+Fixes & notes
+- Use elementwise OR (`|`) for Series comparisons (for `Catch-up_Sessions`).
+- Pass subplot axes to seaborn with `ax=...` to render subplots correctly.
+- Use proportions and statistical tests (chi-square, ANOVA, t-test) when comparing groups.
 
-## What I did (high level) ✨
-- Data inspection and cleaning (missing values, duplicates).
-- Feature engineering: `Final_Decision` (Pass/Fail), `Catch-up_Sessions` (Yes/No), `Excluded` (attendance < 75%).
-- Visualizations: boxplots, histograms, pie charts, and heatmaps for correlations.
-- Basic descriptive statistics and short interpretations.
+Next steps
+- Run statistical tests for significance and control for confounders.
+- Profile and investigate outliers; refine intervention criteria.
+- Optionally build a simple predictive model to flag at-risk students and add automated checks (requirements.txt, CI).
 
----
+If you want, I can commit this update and add a requirements.txt file.// filepath: c:\Users\PC\Documents\GitHub\Student-Preformance-Analysis\README.md
+# Student Performance Analysis
 
-## Key findings & insights 🔍
-- **No large gender gap**: medians and IQRs for overall score are similar across genders — typical students have comparable performance by gender.
-- **Overall distribution**: unimodal distribution with most students clustered in the middle–high score range and a small tail of lower scores (students who might benefit from targeted support).
-- **Across-subject correlation**: students who do well in one subject tend to do well in others (positive correlations).
-- **Study hours**: higher study hours generally associate with higher overall scores.
+Short summary  
+Exploratory Data Analysis (EDA) of student performance (math, science, english, overall). The notebook cleans the data, creates intervention flags, and produces plots and summary insights.
 
----
+Project structure
+- code/Student_analysis.ipynb — main notebook (EDA, feature engineering, plots)
+- Student_Performance.csv — raw dataset
+- Student_Performance_Cleaned.csv — cleaned dataset (output)
+- LICENSE
 
-## Fixes & notes ✅
-- Fixed plotting: explicitly pass subplot axes to seaborn (e.g., `ax=axes[0]`) so the boxplot now appears in the intended subplot.
-- Fixed boolean bug when creating `Catch-up_Sessions`: use elementwise OR (`|`) for Series comparisons instead of Python `or`.
+Quick start (Windows)
+1. python -m venv .venv
+2. .venv\Scripts\activate
+3. pip install -r requirements.txt  # or: pip install pandas numpy matplotlib seaborn scipy jupyter
+4. jupyter notebook code/Student_analysis.ipynb
 
----
+What I did
+- Data cleaning: dropped duplicates, removed a mislabeled study method row ("not es").
+- Feature engineering:
+  - `Final_Decision`: Pass/Fail from `final_grade` (a–d → Pass, e–f → Fail).
+  - `Excluded`: attendance < 75% flag.
+  - `Catch-up_Sessions`: `final_grade == 'e'` OR `overall_score <= 60` flag.
+  - Converted categorical columns to `category` dtype.
+- Visualizations: pie charts, bar charts, boxplots, histograms, and correlation heatmaps.
+- Saved cleaned dataset to `Student_Performance_Cleaned.csv`.
 
-## Next steps 🔭
-- Run statistical tests (t-test / Mann–Whitney) to confirm group differences.
-- Inspect and profile outliers (attendance, study hours, sociodemographic features).
-- Consider a simple predictive model to flag students who may need interventions.
+Key findings
+- No large gender gap in overall scores (medians and IQRs similar).
+- Score distribution is unimodal with a small lower tail — a subset may need support.
+- Strong positive correlation across subjects (math, science, english).
+- Study hours correlate positively with overall score.
+- Extra activities and study-method counts show no obvious negative effect; further testing needed.
 
----
-
-If you'd like, I can add a `requirements.txt` and commit this `README.md` for you. Want me to do that? ✅
-
+Fixes & notes
+- Use elementwise OR (`|`) for Series comparisons (for `Catch-up_Sessions`).
+- Pass subplot axes to seaborn with `ax=...` to render subplots correctly.
+- Use proportions and statistical tests (chi-square, ANOVA, t-test) when comparing groups.
